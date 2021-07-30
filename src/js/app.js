@@ -1,11 +1,13 @@
 // ================== TASK 1 =====================
 const delay = ms => {
-  // Твой код
+  return new Promise(resolve => {
+    setTimeout(() => resolve(ms), ms);
+  });
 };
 
 const consoleLogger = time => console.log(`Resolved after ${time}ms`);
 
-// Вызовы функции для проверки
+// check for working
 delay(2000).then(consoleLogger); // Resolved after 2000ms
 delay(1000).then(consoleLogger); // Resolved after 1000ms
 delay(1500).then(consoleLogger); // Resolved after 1500ms
@@ -18,21 +20,18 @@ const users = [
   { name: 'Lux', active: false },
 ];
 
-const toggleUserState = (allUsers, userName, callback) => {
-  const updatedUsers = allUsers.map(user =>
-    user.name === userName ? { ...user, active: !user.active } : user,
-  );
-
-  callback(updatedUsers);
+const toggleUserState = (allUsers, userName) => {
+  return new Promise(resolve => {
+    const updatedUsers = allUsers.map(user =>
+      user.name === userName ? { ...user, active: !user.active } : user,
+    );
+    resolve(updatedUsers);
+  });
 };
 
 const logger = updatedUsers => console.table(updatedUsers);
 
-// Сейчас работает так:
-toggleUserState(users, 'Mango', logger);
-toggleUserState(users, 'Lux', logger);
-
-// Должно работать так:
+// Check for working:
 toggleUserState(users, 'Mango').then(logger);
 toggleUserState(users, 'Lux').then(logger);
 
@@ -41,34 +40,32 @@ const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-const makeTransaction = (transaction, onSuccess, onError) => {
-  const delay = randomIntegerFromInterval(200, 500);
+const makeTransaction = ({ id }) => {
+  return new Promise((resolve, reject) => {
+    const delay = randomIntegerFromInterval(200, 500);
 
-  setTimeout(() => {
-    const canProcess = Math.random() > 0.3;
-
-    if (canProcess) {
-      onSuccess(transaction.id, delay);
-    } else {
-      onError(transaction.id);
-    }
-  }, delay);
+    setTimeout(() => {
+      const canProcess = Math.random() > 0.3;
+      if (canProcess) {
+        resolve({ id, delay });
+      }
+      reject({ id });
+    }, delay);
+  });
 };
 
-const logSuccess = (id, time) => {
-  console.log(`Transaction ${id} processed in ${time}ms`);
+const logSuccess = ({ id, delay }) => {
+  console.log(`%c Transaction ${id} processed in ${delay}ms`, 'color: green; font-size: 14px;');
 };
 
-const logError = id => {
-  console.warn(`Error processing transaction ${id}. Please try again later.`);
+const logError = ({ id }) => {
+  console.warn(
+    `%c Error processing transaction ${id}. Please try again later.`,
+    'color: red; font-size: 14px;',
+  );
 };
 
-// Работает так:
-makeTransaction({ id: 70, amount: 150 }, logSuccess, logError);
-makeTransaction({ id: 71, amount: 230 }, logSuccess, logError);
-makeTransaction({ id: 72, amount: 75 }, logSuccess, logError);
-makeTransaction({ id: 73, amount: 100 }, logSuccess, logError);
-// Должно работать так:
+// Check for working:
 makeTransaction({ id: 70, amount: 150 }).then(logSuccess).catch(logError);
 
 makeTransaction({ id: 71, amount: 230 }).then(logSuccess).catch(logError);

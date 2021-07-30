@@ -3,4 +3,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"VtPn":[function(require,module,exports) {
 "use strict";require("../sass/main.scss");const e=e=>new Promise(s=>{setTimeout(()=>s(e),e)});console.log("%c TASK 1 results here:","color: green; font-size: 20px;");const s=e=>console.log(`Resolved after ${e}ms`);e(2e3).then(s),e(1e3).then(s),e(1500).then(s);
 },{"../sass/main.scss":"clu1"}]},{},["VtPn"], null)
-//# sourceMappingURL=/goit-js-hw-11-promisification/first.2d71843d.js.map
+//# sourceMappingURL=/goit-js-hw-11-promisification/first.d15f464f.js.map

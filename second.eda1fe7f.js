@@ -3,4 +3,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"d1Ei":[function(require,module,exports) {
 "use strict";require("../sass/main.scss");const e=[{name:"Mango",active:!0},{name:"Poly",active:!1},{name:"Ajax",active:!0},{name:"Lux",active:!1}],a=(e,a)=>new Promise(n=>{n(e.map(e=>e.name===a?{...e,active:!e.active}:e))},2e3);console.log("%c TASK 2 results here:","color: green; font-size: 20px;");const n=e=>console.table(e);a(e,"Mango").then(n),a(e,"Lux").then(n);
 },{"../sass/main.scss":"clu1"}]},{},["d1Ei"], null)
-//# sourceMappingURL=/goit-js-hw-11-promisification/second.27fe3baa.js.map
+//# sourceMappingURL=/goit-js-hw-11-promisification/second.eda1fe7f.js.map

@@ -34,3 +34,60 @@ body {
 li:not(:last-child) {
   margin-bottom: 30px;
 }
+
+.drops {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.drop {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  animation-duration: 1500ms;
+  background-color: transparent;
+  border-radius: 59% 41% 35% 65% / 59% 59% 41% 41%;
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.05), 15px 25px 10px rgba(0, 0, 0, 0.1),
+    15px 20px 20px rgba(0, 0, 0, 0.05), inset -10px -10px 15px rgba(255, 255, 255, 0.9);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 85px;
+    left: 45px;
+    background: rgba(255, 255, 255, 0.6);
+    width: 20px;
+    height: 20px;
+    border-radius: 59% 41% 31% 69% / 44% 41% 59% 56%;
+    animation-duration: 1500ms;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 85px;
+    left: 75px;
+    background: rgba(255, 255, 255, 0.6);
+    width: 10px;
+    height: 10px;
+    border-radius: 44% 56% 20% 80% / 44% 62% 38% 56%;
+    animation-duration: 1500ms;
+  }
+
+  &:nth-child(2) {
+    transform: scale(0.5) translate(-300px, 280px);
+    border-radius: 55% 45% 33% 67% / 33% 55% 45% 67%;
+  }
+
+  &:nth-child(3) {
+    transform: scale(0.5) translate(420px, 250px);
+    border-radius: 35% 65% 52% 48% / 40% 45% 55% 60%;
+  }
+
+  &:nth-child(4) {
+    transform: scale(0.35) translate(450px, -350px);
+    border-radius: 46% 54% 73% 27% / 35% 44% 56% 65%;
+  }
+}
